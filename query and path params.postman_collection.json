@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "9b558ea0-cbd8-4755-b2a8-746bc2c036b8",
+		"name": "query and path params",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-9b558ea0-cbd8-4755-b2a8-746bc2c036b8?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let length = pm.response.json().length",
+							"console.log(length)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{requestJson}}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users?page=2&per_page=50",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "per_page",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.jolpi.ca/ergast/f1/2025/1/pitstops",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/f1/:season/:round/pitstops",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"f1",
+						":season",
+						":round",
+						"pitstops"
+					],
+					"variable": [
+						{
+							"key": "season",
+							"value": "2024"
+						},
+						{
+							"key": "round",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

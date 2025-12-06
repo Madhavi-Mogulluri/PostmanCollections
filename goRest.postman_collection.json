@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "0f54a9d9-0601-4d2e-adee-1f05c8bc8dce",
+		"name": "goRest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-0f54a9d9-0601-4d2e-adee-1f05c8bc8dce?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "1-createAUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{$randomUserName}}\",\n    \"gender\": \"male\",\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-getCreatedUserId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{$randomUserName}}\",\n    \"gender\": \"male\",\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"status\": \"active\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users/8145438",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"8145438"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3_updateUser",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Imelda_Farrell73\",\n    \"email\": \"Raphaelle4@example.com\",\n    \"gender\": \"male\",\n    \"status\": \"inactive\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users/8036432",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"8036432"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4-Update a User Partially",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"Imelda_Farrell73\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/8063345",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"8063345"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete A user",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users/8063345",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"8063345"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "headApi",
+			"request": {
+				"method": "HEAD",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "OPTIONS",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{$randomUserName}}\",\n    \"gender\": \"male\",\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"status\": \"active\"\n}"
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "curlMethod",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Madonna12\",\n    \"gender\": \"male\",\n    \"email\": \"Joana_Ziemann@example.org\",\n    \"status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();",
+							"console.log(response)",
+							"",
+							"let userids = response.map(e =>e.id)",
+							"console.log(userids);",
+							"pm.variables.set('userIDs',userids)"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-updateAllUsers",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let usersid = pm.variables.get('userIDs');",
+							"",
+							"console.log(usersid);",
+							"if (Array.isArray(usersid) && usersid.length > 0) {",
+							"    pm.variables.set('singleUserID', usersid.shift())",
+							"    console.log(usersid.length)",
+							"    pm.execution.setNextRequest('2-updateAllUsers')",
+							"}",
+							"else{",
+							"    console.log('all users are updated')",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"in active\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users/{{singleUserID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"{{singleUserID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "8a862809-a829-4c0a-806f-f89764138704",
+		"name": "DataDrivenTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-8a862809-a829-4c0a-806f-f89764138704?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "1-CreateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('check response data', function(){",
+							"",
+							"    let resonseJsonData = pm.response.json();",
+							"",
+							"    pm.expect(resonseJsonData.name).to.eql(pm.iterationData.get('name'));",
+							"    pm.expect(resonseJsonData.gender).to.eql(pm.iterationData.get('gender'));",
+							"    pm.expect(resonseJsonData.status).to.eql(pm.iterationData.get('status'));",
+							"",
+							"",
+							"   let userID =  resonseJsonData.id;",
+							"   pm.expect(userID).not.to.be.null; ",
+							"",
+							"",
+							"   let actualEmail =  resonseJsonData.email;",
+							"   console.log('actual email id:' + actualEmail);",
+							"",
+							"   //actual email vs expected email(random email)",
+							"   let rawBody = pm.request.body.raw; //json string",
+							"   //JSON to JS object: using parse",
+							"   let user = JSON.parse(rawBody);",
+							"   let expectedUserEmail = user.email;",
+							"    console.log('expected email id:' + expectedUserEmail);",
+							"",
+							"",
+							"   pm.expect(actualEmail).to.be.eql(expectedUserEmail); ",
+							"",
+							"",
+							"",
+							"",
+							"});",
+							"",
+							"",
+							"",
+							"//{\"id\":8078382,\"name\":\"Naveen\",\"email\":\"apiautomation_Tamara_DuBuque@hotmail.com\",\"gender\":\"male\",\"status\":\"inactive\"}",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{name}}\",\n    \"gender\": \"{{gender}}\",\n    \"email\": \"apiautomation_{{$randomEmail}}\",\n    \"status\": \"{{status}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

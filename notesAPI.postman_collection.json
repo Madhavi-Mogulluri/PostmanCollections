@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "94222aba-2af8-426c-b00a-f96c2ee04338",
+		"name": "notesAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-94222aba-2af8-426c-b00a-f96c2ee04338?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "post",
+			"item": [
+				{
+					"name": "1-CreateNotes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"title\" : \"madhu postman practice\",\n\"content\" : \"this is my postman post request to create notes\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.233.127.154:8080/api/notes",
+							"protocol": "http",
+							"host": [
+								"13",
+								"233",
+								"127",
+								"154"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllNotes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.233.127.154:8080/api/notes/940",
+							"protocol": "http",
+							"host": [
+								"13",
+								"233",
+								"127",
+								"154"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notes",
+								"940"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3-Updatenotes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"title\" : \"madhu postman practice\",\n\"content\" : \"this is my postman post request to update notes\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://13.233.127.154:8080/api/notes/1218",
+							"protocol": "http",
+							"host": [
+								"13",
+								"233",
+								"127",
+								"154"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notes",
+								"1218"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4-DeleteNotes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://13.233.127.154:8080/api/notes/1218",
+							"protocol": "http",
+							"host": [
+								"13",
+								"233",
+								"127",
+								"154"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notes",
+								"1218"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://13.233.127.154:8080",
+			"type": "default"
+		}
+	]
+}

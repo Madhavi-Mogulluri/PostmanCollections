@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "00d3d082-09a8-4477-9f03-3fd4055834ab",
+		"name": "Auth Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-00d3d082-09a8-4477-9f03-3fd4055834ab?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "basic auth test",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic  \"YWRtaW46YWRtaW4=\"",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://the-internet.herokuapp.com/basic_auth",
+					"protocol": "https",
+					"host": [
+						"the-internet",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"basic_auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Digestive auth",
+			"request": {
+				"auth": {
+					"type": "digest",
+					"digest": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "MD5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-echo.com/digest-auth",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"digest-auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "googleAI",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "X-goog-api-key",
+						"value": "AIzaSyCj9HG41Lo0B1f2ga7xz6mbWdTkApXt4yg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"contents\": [\n      {\n        \"parts\": [\n          {\n            \"text\": \"Explain what is xpath?\"\n          }\n        ]\n      }\n    ]\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
+					"protocol": "https",
+					"host": [
+						"generativelanguage",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v1beta",
+						"models",
+						"gemini-2.0-flash:generateContent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "digestive",
+			"request": {
+				"auth": {
+					"type": "digest",
+					"digest": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "MD5",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Digest 'cG9zdG1hbjpwYXNzd29yZA=='",
+						"type": "text"
+					},
+					{
+						"key": "realm",
+						"value": "Users",
+						"type": "text"
+					},
+					{
+						"key": "nonce",
+						"value": "Rk2mG5z7p5c2AOhWyVxqKP6mqsz5q2fC",
+						"type": "text"
+					},
+					{
+						"key": "qop",
+						"value": "auth",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://postman-echo.com/digest-auth",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"digest-auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Slack_webhook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"text\":\"Hello, World!\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hooks.slack.com/services/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",
+					"protocol": "https",
+					"host": [
+						"hooks",
+						"slack",
+						"com"
+					],
+					"path": [
+						"services",
+						"T0A0JGMJDV5",
+						"B0A0JJ82M7H",
+						"pWNb07ift0cte2aSN7GKcFJA"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,53 @@
+{
+	"info": {
+		"_postman_id": "94e52994-57a7-4bc4-8e3d-7d4ce69aab46",
+		"name": "formula1 api collections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-94e52994-57a7-4bc4-8e3d-7d4ce69aab46?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "1-seasons api",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/f1/seasons",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"f1",
+						"seasons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-circuits",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/f1/circuits?circuitId=adelaide",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"f1",
+						"circuits"
+					],
+					"query": [
+						{
+							"key": "circuitId",
+							"value": "adelaide"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

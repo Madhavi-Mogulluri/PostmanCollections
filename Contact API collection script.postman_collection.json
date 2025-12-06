@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "25a1de63-e952-4445-a99a-f5da4afdc9d5",
+		"name": "Contact API collection script",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-25a1de63-e952-4445-a99a-f5da4afdc9d5?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "1-Add Contact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonResponse = pm.response.json();",
+							"let contactID = jsonResponse._id;",
+							"console.log(contactID);",
+							"pm.environment.set(\"newContactID\",contactID)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{new_Token_ID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"birthdate\": \"1970-01-01\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone\": \"8005555555\",\n    \"street1\": \"1 Main St.\",\n    \"street2\": \"Apartment A\",\n    \"city\": \"Anytown\",\n    \"stateProvince\": \"KS\",\n    \"postalCode\": \"12345\",\n    \"country\": \"USA\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{contactsBaseURL}}/contacts",
+					"host": [
+						"{{contactsBaseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{new_Token_ID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"birthdate\": \"1970-01-01\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone\": \"8005555555\",\n    \"street1\": \"1 Main St.\",\n    \"street2\": \"Apartment A\",\n    \"city\": \"Anytown\",\n    \"stateProvince\": \"KS\",\n    \"postalCode\": \"12345\",\n    \"country\": \"USA\"\n}"
+				},
+				"url": {
+					"raw": "{{contactsBaseURL}}/contacts",
+					"host": [
+						"{{contactsBaseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-Getcreated contact",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{new_Token_ID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"birthdate\": \"1970-01-01\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone\": \"8005555555\",\n    \"street1\": \"1 Main St.\",\n    \"street2\": \"Apartment A\",\n    \"city\": \"Anytown\",\n    \"stateProvince\": \"KS\",\n    \"postalCode\": \"12345\",\n    \"country\": \"USA\"\n}"
+				},
+				"url": {
+					"raw": "{{contactsBaseURL}}/contacts/{{newContactID}}",
+					"host": [
+						"{{contactsBaseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{newContactID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4-update created contact",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{new_Token_ID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"birthdate\": \"1970-01-01\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone\": \"8005555555\",\n    \"street1\": \"1 Main St.\",\n    \"street2\": \"Apartment A\",\n    \"city\": \"Anytown\",\n    \"stateProvince\": \"KS\",\n    \"postalCode\": \"12345\",\n    \"country\": \"UK\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{contactsBaseURL}}/contacts/{{newContactID}}",
+					"host": [
+						"{{contactsBaseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{newContactID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5-delete created contact",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{new_Token_ID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"birthdate\": \"1970-01-01\",\n    \"email\": \"{{$randomEmail}}\",\n    \"phone\": \"8005555555\",\n    \"street1\": \"1 Main St.\",\n    \"street2\": \"Apartment A\",\n    \"city\": \"Anytown\",\n    \"stateProvince\": \"KS\",\n    \"postalCode\": \"12345\",\n    \"country\": \"UK\"\n}"
+				},
+				"url": {
+					"raw": "{{contactsBaseURL}}/contacts/{{newContactID}}",
+					"host": [
+						"{{contactsBaseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{newContactID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.sendRequest({",
+					"    method : \"POST\",",
+					"    url : \"https://thinking-tester-contact-list.herokuapp.com/users/login\",",
+					"     header :{",
+					"       \"Content-Type\": \"application/json\",",
+					"",
+					"    },",
+					"    body : {",
+					"        mode : \"raw\",",
+					"        raw : JSON.stringify(",
+					"            {\"email\": \"madhu.muse@gmail.com\",",
+					"            \"password\": \"Rudra@156\"})",
+					"    ",
+					"",
+					"    }",
+					"",
+					"},function(error,response){",
+					"    if(error){",
+					"        console.log(error)",
+					"    }",
+					"    else{",
+					"        let responsebody = JSON.parse(response.text())",
+					"        let tokenID = responsebody.token;",
+					"        console.log(tokenID)",
+					"        pm.variables.set(\"new_Token_ID\",tokenID)",
+					"    }",
+					"})"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

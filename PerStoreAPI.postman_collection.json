@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "0a92d9f0-08be-429e-b3c3-a488c5d5e901",
+		"name": "PerStoreAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-0a92d9f0-08be-429e-b3c3-a488c5d5e901?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1001,\n  \"category\": {\n    \"id\": 4,\n    \"name\": \"ram\"\n  },\n  \"name\": \"doggie\",\n  \"photoUrls\": [\n    \"dog1.png\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 1,\n      \"name\": \"red\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/v2/pet",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,342 @@
+{
+	"info": {
+		"_postman_id": "38922e47-669d-4348-a155-e32ea30399bd",
+		"name": "Contacts Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-38922e47-669d-4348-a155-e32ea30399bd?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "create a contact",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"street1\": \"23489\",\n    \"city\": \"newport\",\n    \"postalCode\": \"NP19 7GQ\",\n    \"country\": \"United Kingdom\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-get a specific contact",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"street1\": \"23489\",\n    \"city\": \"newport\",\n    \"postalCode\": \"NP19 7GQ\",\n    \"country\": \"United Kingdom\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts/689b257de1021500153e4282",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"689b257de1021500153e4282"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get User contacts response",
+			"request": {
+				"method": "HEAD",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/contacts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-get a specific user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.get('newTokenID');",
+							"pm.collectionVariables.get('contactID');"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/contacts/689b257de1021500153e4282",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"689b257de1021500153e4282"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5-Delete contact",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"santosh Kumar4t\",\n    \"lastName\": \"Gannu52367\",\n    \"email\": \"santoshkumar.gann1u@gmail.com\",\n    \"street1\": \"36 jenkins street\",\n    \"city\": \"newport\",\n    \"postalCode\": \"NP19 0GQ\",\n    \"country\": \"United Kingdom\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts/689b257de1021500153e4282",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"689b257de1021500153e4282"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4-Update contact",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"street1\": \"23489\",\n    \"city\": \"newport\",\n    \"postalCode\": \"NP19 7GQ\",\n    \"country\": \"United Kingdom\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts/689b257de1021500153e4282",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts",
+						"689b257de1021500153e4282"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-Get all contacts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODk5ZGIwM2FlMzk1MjAwMTUwMzFlNGMiLCJpYXQiOjE3NTc0NDYzNzR9.a7YijtsVwdJmcxdHZkhPx71oxQI8yDj57vbKZU9v51o",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/contacts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6-logout",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"madhu.muse@gmail.com\",\n    \"password\": \"Rudra@156\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/logout",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7-optionApi",
+			"request": {
+				"method": "OPTIONS",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/contacts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "tokenID",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODk5ZGIwM2FlMzk1MjAwMTUwMzFlNGMiLCJpYXQiOjE3NTQ5OTY3MDV9.KtryGYTPYiCQLE9Q_3_1lkD9Yi6Bd3D-ieyK9WBUaPQ",
+			"type": "default"
+		}
+	]
+}

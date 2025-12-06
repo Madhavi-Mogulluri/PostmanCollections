@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "efc6ece1-ffed-4d16-9bc4-b661975582e2",
+		"name": "Get_put_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-efc6ece1-ffed-4d16-9bc4-b661975582e2?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "1-Get all Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let getResponse = pm.response.json();",
+							"let userIds = getResponse.map(ele => ele.id); ",
+							"console.log(userIds);",
+							"",
+							"pm.variables.set('USERIDs',userIds);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-UpdateUserDetails",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let ids = pm.variables.get('USERIDs'); // array of user ids",
+							"console.log(ids)",
+							"",
+							" pm.variables.set('singleUserID',ids.shift()) // 1st element will work",
+							" console.log(ids.length)",
+							"",
+							" if(Array.isArray(ids) && ids.length>0){",
+							"    pm.execution.setNextRequest('2-UpdateUserDetails') // call the put requesr again",
+							"",
+							" }",
+							" else{",
+							"    console.log('all users are updated');",
+							"    console.log('DONE')",
+							" }",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\" : \"inactive\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users/{{singleUserID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"{{singleUserID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllUsers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseBody = pm.response.json();",
+							"",
+							"let userIDs = responseBody.map(e => e.id)",
+							"",
+							"console.log(userIDs);",
+							"pm.variables.set(\"UserIds\",userIDs);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putTest",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let UserIDs = pm.variables.get(\"UserIds\");",
+							"",
+							"if(Array.isArray(UserIDs) && UserIDs.length>0){",
+							"    pm.variables.set(\"singleUserID\",UserIDs.shift()) ",
+							"    console.log(UserIds.length)",
+							"    pm.execution.setNextRequest(\"putTest\")",
+							"}",
+							"else{",
+							"    console.log(\"all users updated\")",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users/{{singleUserID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"{{singleUserID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://gorest.co.in",
+			"type": "string"
+		},
+		{
+			"key": "tokenID",
+			"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+			"type": "string"
+		}
+	]
+}

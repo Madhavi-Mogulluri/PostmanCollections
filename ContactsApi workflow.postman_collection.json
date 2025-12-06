@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "953a6f0f-e06c-49a1-b33d-904ce2b00604",
+		"name": "ContactsApi workflow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-953a6f0f-e06c-49a1-b33d-904ce2b00604?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "0-login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonResponse = pm.response.json();",
+							"let tokenID = jsonResponse.token;",
+							"console.log('token id is : ' + tokenID);",
+							"",
+							"pm.collectionVariables.set('newTokenID',tokenID);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"madhu.muse@gmail.com\",\n    \"password\": \"Rudra@156\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1-Create A User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.get('newTokenID');"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonRespone = pm.response.json();",
+							"let contactID = jsonRespone._id;",
+							"",
+							"pm.collectionVariables.set('newcontactID',contactID);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{newTokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n    \"firstName\": \"{{$randomFirstName}}\",\n    \"lastName\": \"{{$randomLastName}}\",\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"street1\": \"23489\",\n    \"city\": \"newport\",\n    \"postalCode\": \"NP19 7GQ\",\n    \"country\": \"United Kingdom\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/contacts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"contacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-getcreatedContact",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.get('newcontactID')"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{newTokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{contactsBaseURL}}/contacts/{{newcontactID}}",
+					"host": [
+						"{{contactsBaseURL}}"
+					],
+					"path": [
+						"contacts",
+						"{{newcontactID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{newTokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"madhu.muse@gmail.com\",\n    \"password\": \"Rudra@156\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/users/logout",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://thinking-tester-contact-list.herokuapp.com",
+			"type": "string"
+		},
+		{
+			"key": "tokenID",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODk5ZGIwM2FlMzk1MjAwMTUwMzFlNGMiLCJpYXQiOjE3NTQ5MTQ4ODV9.xXNI02Vlm7SE9bTEUp9mMleP1r28VHKXrBAWYY8trCc",
+			"type": "string"
+		},
+		{
+			"key": "newTokenID",
+			"value": ""
+		},
+		{
+			"key": "contactID",
+			"value": ""
+		},
+		{
+			"key": "68bd7126e2886100156f7e56",
+			"value": ""
+		},
+		{
+			"key": "68bd718fdaa90900156cead5",
+			"value": ""
+		},
+		{
+			"key": "newcontactID",
+			"value": ""
+		}
+	]
+}

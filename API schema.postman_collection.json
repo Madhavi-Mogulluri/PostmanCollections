@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "b9be8a06-2b63-4912-8d9a-a8124e203b37",
+		"name": "API schema",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-b9be8a06-2b63-4912-8d9a-a8124e203b37?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "SchemaValidation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let schema = {",
+							"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+							"  \"title\": \"Generated schema for Root\",",
+							"  \"type\": \"array\",",
+							"  \"items\": {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"      \"id\": {",
+							"        \"type\": \"number\"",
+							"      },",
+							"      \"name\": {",
+							"        \"type\": \"string\"",
+							"      },",
+							"      \"email\": {",
+							"        \"type\": \"string\"",
+							"      },",
+							"      \"gender\": {",
+							"        \"type\": \"string\"",
+							"      },",
+							"      \"status\": {",
+							"        \"type\": \"string\"",
+							"      }",
+							"    },",
+							"    \"required\": [",
+							"      \"id\",",
+							"      \"name\",",
+							"      \"email\",",
+							"      \"gender\",",
+							"      \"status\"",
+							"    ]",
+							"  }",
+							"}",
+							"",
+							"pm.test(\"validate schema\", function (){",
+							"    pm.response.to.have.jsonSchema(schema);",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get a single user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let schema = {",
+							"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+							"  \"title\": \"Generated schema for Root\",",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"id\": {",
+							"      \"type\": \"number\"",
+							"    },",
+							"    \"name\": {",
+							"      \"type\": \"string\"",
+							"    },",
+							"    \"email\": {",
+							"      \"type\": \"string\"",
+							"    },",
+							"    \"gender\": {",
+							"      \"type\": \"string\"",
+							"    },",
+							"    \"status\": {",
+							"      \"type\": \"string\"",
+							"    }",
+							"  },",
+							"  \"required\": [",
+							"    \"id\",",
+							"    \"name\",",
+							"    \"email\",",
+							"    \"gender\",",
+							"    \"status\"",
+							"  ]",
+							"}",
+							"",
+							"pm.test(\"check user api  schema\",function (){",
+							"    pm.response.to.have.jsonSchema(schema)",
+							"})",
+							"",
+							"//using ajv",
+							"let AJV = require('ajv')",
+							"let ajv = new AJV();",
+							"pm.test(\"check user api  schema with ajv\", function () {",
+							"    pm.expect(ajv.validate(schema, pm.response.json())).to.be.true;",
+							"})",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/public/v2/users/8141798",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users",
+						"8141798"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-get products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let schema = {",
+							"  \"$schema\": \"http://json-schema.org/draft-07/schema#\",",
+							"  \"title\": \"Generated schema for Root\",",
+							"  \"type\": \"array\",",
+							"  \"items\": {",
+							"    \"type\": \"object\",",
+							"    \"properties\": {",
+							"      \"id\": {",
+							"        \"type\": \"number\"",
+							"      },",
+							"      \"title\": {",
+							"        \"type\": \"string\"",
+							"      },",
+							"      \"price\": {",
+							"        \"type\": \"number\"",
+							"      },",
+							"      \"description\": {",
+							"        \"type\": \"string\"",
+							"      },",
+							"      \"category\": {",
+							"        \"type\": \"string\"",
+							"      },",
+							"      \"image\": {",
+							"        \"type\": \"string\"",
+							"      },",
+							"      \"rating\": {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"          \"rate\": {",
+							"            \"type\": \"number\"",
+							"          },",
+							"          \"count\": {",
+							"            \"type\": \"number\"",
+							"          }",
+							"        },",
+							"        \"required\": [",
+							"          \"rate\",",
+							"          \"count\"",
+							"        ]",
+							"      }",
+							"    },",
+							"    \"required\": [",
+							"      \"id\",",
+							"      \"title\",",
+							"      \"price\",",
+							"      \"description\",",
+							"      \"category\",",
+							"      \"image\",",
+							"      \"rating\"",
+							"    ]",
+							"  }",
+							"}",
+							"",
+							"let AJV = require('ajv')",
+							"let ajv = new AJV();",
+							"pm.test(\"check products api  schema with ajv\", function () {",
+							"    pm.expect(ajv.validate(schema, pm.response.json())).to.be.true;",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://fakestoreapi.com/products",
+					"protocol": "http",
+					"host": [
+						"fakestoreapi",
+						"com"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

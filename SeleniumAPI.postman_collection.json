@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "8d574332-e0ce-4f6f-83de-68190fa04b2a",
+		"name": "SeleniumAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-8d574332-e0ce-4f6f-83de-68190fa04b2a?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "1-Launch Browser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();",
+							"let sessionID = response.value.sessionId;",
+							"",
+							"pm.variables.set(\"SID\",sessionID);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"capabilities\": {\n        \"alwaysMatch\": {\n            \"browserName\": \"chrome\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/session",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-Enter URL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let appURL = \"https://www.google.com\"",
+							"",
+							"pm.variables.set(\"APPURL\",appURL);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"{{APPURL}}\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/session/{{SID}}/url",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"session",
+						"{{SID}}",
+						"url"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-Find an element",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"let response = pm.response.json();",
+							"let value = response.value;",
+							"let elementID = value[\"element-6066-11e4-a52e-4f735466cecf\"];",
+							"pm.variables.set('ELEMENTID',elementID);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"using\": \"xpath\",\n    \"value\": \"//textarea[@name='q']\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4444/session/{{SID}}/element",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"session",
+						"{{SID}}",
+						"element"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4-sendkeys",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Hello, madhu!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4444/session/{{SID}}/element/{{ELEMENTID}}/value",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"session",
+						"{{SID}}",
+						"element",
+						"{{ELEMENTID}}",
+						"value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5-Click an element",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"Hello, madhu!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4444/session/{{SID}}/element/{{ELEMENTID}}/click",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"session",
+						"{{SID}}",
+						"element",
+						"{{ELEMENTID}}",
+						"click"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6-close browser session",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=utf-8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4444/session/{{SID}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4444",
+					"path": [
+						"session",
+						"{{SID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "sessionID",
+			"value": "fca786bebc86de01147040b7ed7fe60f",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}

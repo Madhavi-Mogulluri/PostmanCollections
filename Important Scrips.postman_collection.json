@@ -1,0 +1,403 @@
+{
+	"info": {
+		"_postman_id": "a7e919e5-006e-4a7f-8682-5ad0e5c044d7",
+		"name": "Important Scrips",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-a7e919e5-006e-4a7f-8682-5ad0e5c044d7?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "Add a header using script",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// single header",
+							"",
+							"// pm.request.addHeader({",
+							"//     key : \"x-api-key\",",
+							"//     value : 'testing'",
+							"// })",
+							"",
+							"// Add multiple headers",
+							"",
+							"let myHeaders =[{key : 'browser1',value :'chrome'},",
+							"{key : 'browser2',value :'firefox'},",
+							"{key : 'browser3',value :'edge'}]",
+							"",
+							"myHeaders.forEach(ele =>{",
+							"    pm.request.addHeader(ele)",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-Remove Header",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//pm.request.headers.remove('x-something')",
+							"",
+							"pm.request.removeHeader('x-something')"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+						"type": "text"
+					},
+					{
+						"key": "x-something",
+						"value": "abc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update header",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// pm.request.headers.upsert({",
+							"//     key : 'Authorization',",
+							"//     value : 'Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2'",
+							"// })",
+							"",
+							"pm.request.upsertHeader({",
+							"    key : 'Authorization',",
+							"    value : 'Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2'",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "abc123",
+						"type": "text"
+					},
+					{
+						"key": "x-something",
+						"value": "abc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "parse html using cheerio Api",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let cheerio = require('cheerio')",
+							"pm.test('check html has titile', function(){",
+							"    pm.expect(pm.response.text()).to.include('The Internet');",
+							"",
+							"})",
+							"",
+							"pm.test('check it has header as Login Page',function() {",
+							"    pm.expect(pm.response.text()).to.include('Login Page')",
+							"})",
+							"",
+							"pm.test('check it has login form',function () {",
+							"    let res = cheerio.load(pm.response.text())",
+							"    let loginform = res('[name=\"login\"]')",
+							"    console.log('login form is' + loginform);",
+							"",
+							"    let attrvalue = loginform.attr('id')",
+							"    console.log('value is ' + attrvalue);",
+							"",
+							"     pm.expect(loginform.find('#username').length).to.be.eql(1);",
+							"    pm.expect(loginform.find('#password').length).to.be.eql(1);",
+							"",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://the-internet.herokuapp.com/login",
+					"protocol": "https",
+					"host": [
+						"the-internet",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch response and send a new request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let res = pm.response.json();",
+							"let urlData = res.json.urls;",
+							"console.log(urlData);",
+							"",
+							"Object.keys(urlData).forEach(ele => {",
+							"    pm.test('send url', function(){",
+							"        pm.sendRequest({",
+							"            'url' : urlData[ele],",
+							"            'method' : 'GET'",
+							"        },function(error,response){",
+							"            if(error){",
+							"                console.log(error)",
+							"            }",
+							"            else{",
+							"                console.log(response.code)",
+							"                pm.response.to.have.status(200);",
+							"            }",
+							"        })",
+							"    })",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productname\" : \"macbookpro\",\n    \"urls\":{\n        \"u1\" : \"https://naveenautomationlabs.com/opencart/index.php?route=account/login\",\n        \"u2\" : \"https://google.com\",\n        \"u3\" : \"https://gorest.co.in/public/v2/users\",\n        \"u4\" : \"https://gorest.co.in/public/v2/users\",\n        \"u5\" : \"https://gorest.co.in/public/v2/users\",\n        \"u6\" : \"https://naveenautomationlabs.com/opencart/index.php?route=account/register\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://httpbin.org/post",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get data from json array and assert",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let res = pm.response.json();",
+							"let region = res.json.regionId;",
+							"console.log(region)",
+							"let filtersData = res.json.filters;",
+							"console.log('filtersdata is :', filtersData)  ",
+							"let vendorData = filtersData.find(e => e.name === 'VENDOR') ",
+							"console.log('vendordata is :', vendorData);",
+							"",
+							"// find methods gives the 1st element that matches, stops  searchng after find",
+							"// filter gives all the elements that matches",
+							"",
+							"pm.test('check vendor data', function (){",
+							"",
+							"    pm.expect(vendorData.isAllowed).to.be.false",
+							"",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"companyId\": 10101, //json object\n    \"regionId\": 36554, //json object\n    \"filters\": [  //json array\n        {\n            \"id\": 101,\n            \"name\": \"VENDOR\",\n            \"isAllowed\": false\n        },\n        {\n            \"id\": 102,\n            \"name\": \"COUNTRY\",\n            \"isAllowed\": true\n        },\n        \n        {\n            \"id\": 103,\n            \"name\": \"VENDOR\",\n            \"isAllowed\": false\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://httpbin.org/post",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read Data from complex json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let res = pm.response.json().json;",
+							"console.log(res)",
+							"",
+							"let filtersData = [];",
+							"res.forEach(company => {",
+							"  company.filters.forEach(e => {",
+							"      filtersData.push(e)",
+							"  })",
+							"})",
+							"console.log(filtersData)",
+							"let manfacurerData = filtersData.filter(e => e.name === 'MANUFACTURER');",
+							"console.log(manfacurerData);",
+							"",
+							"pm.test(\"Check MANUFACTURER \", function () {",
+							"    manfacurerData.forEach(e => {",
+							"    pm.expect(e.id).to.eql(103);",
+							"    pm.expect(e.isAllowed).to.be.false;",
+							"    pm.expect(e.name).to.eql('MANUFACTURER');",
+							"    })",
+							"    ",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"companyId\": 10101,\n        \"regionId\": 36554,\n        \"filters\": [\n            {\n                \"id\": 101,\n                \"name\": \"VENDOR\",\n                \"isAllowed\": false\n            },\n            {\n                \"id\": 102,\n                \"name\": \"COUNTRY\",\n                \"isAllowed\": true\n            },\n            {\n                \"id\": 103,\n                \"name\": \"MANUFACTURER\",\n                \"isAllowed\": false\n            }\n        ]\n    },\n    {\n        \"companyId\": 10102,\n        \"regionId\": 36555,\n        \"filters\": [\n            {\n                \"id\": 101,\n                \"name\": \"VENDOR\",\n                \"isAllowed\": false\n            },\n            {\n                \"id\": 102,\n                \"name\": \"COUNTRY\",\n                \"isAllowed\": true\n            },\n            {\n                \"id\": 103,\n                \"name\": \"MANUFACTURER\",\n                \"isAllowed\": false\n            }\n        ]\n    },\n    {\n        \"companyId\": 10103,\n        \"regionId\": 36556,\n        \"filters\": [\n            {\n                \"id\": 104,\n                \"name\": \"CATEGORY\",\n                \"isAllowed\": true\n            },\n            {\n                \"id\": 105,\n                \"name\": \"BRAND\",\n                \"isAllowed\": false\n            },\n            {\n                \"id\": 106,\n                \"name\": \"TYPE\",\n                \"isAllowed\": true\n            }\n        ]\n    },\n    {\n        \"companyId\": 10104,\n        \"regionId\": 36557,\n        \"filters\": [\n            {\n                \"id\": 107,\n                \"name\": \"PRICE\",\n                \"isAllowed\": true\n            },\n            {\n                \"id\": 108,\n                \"name\": \"RATING\",\n                \"isAllowed\": false\n            },\n            {\n                \"id\": 109,\n                \"name\": \"AVAILABILITY\",\n                \"isAllowed\": true\n            }\n        ]\n    },\n    {\n        \"companyId\": 10105,\n        \"regionId\": 36558,\n        \"filters\": [\n            {\n                \"id\": 110,\n                \"name\": \"DISCOUNT\",\n                \"isAllowed\": true\n            },\n            {\n                \"id\": 111,\n                \"name\": \"PROMOTION\",\n                \"isAllowed\": false\n            },\n            {\n                \"id\": 112,\n                \"name\": \"NEW_ARRIVAL\",\n                \"isAllowed\": true\n            }\n        ]\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://httpbin.org/post",
+					"protocol": "http",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

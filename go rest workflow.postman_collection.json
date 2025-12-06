@@ -1,0 +1,339 @@
+{
+	"info": {
+		"_postman_id": "3298886d-37e2-4812-aa07-92d5ca445fe1",
+		"name": "go rest workflow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47042821",
+		"_collection_link": "https://madhavi-mogulluri-738245.postman.co/workspace/Madhavi's-Workspace~6a8f7111-7e11-485b-85a7-72357d73e502/collection/47042821-3298886d-37e2-4812-aa07-92d5ca445fe1?action=share&source=collection_link&creator=47042821"
+	},
+	"item": [
+		{
+			"name": "1-Create a user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonResponse = pm.response.json();",
+							"let userID = jsonResponse.id;",
+							"",
+							"pm.collectionVariables.set('newuserID', userID)",
+							"//test cases",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{$randomUserName}}\",\n    \"gender\": \"male\",\n    \"email\": \"{{$randomExampleEmail}}\",\n    \"status\": \"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/{{pathURL}}/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{pathURL}}",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-Get the created user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.get('newuserID')",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/{{pathURL}}/users/{{newuserID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{pathURL}}",
+						"users",
+						"{{newuserID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3-update the user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.get('newuserID');"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"inactive\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/{{pathURL}}/users/{{newuserID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{pathURL}}",
+						"users",
+						"{{newuserID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4-delete the user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.get('newuserID');",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/{{pathURL}}/users/{{newuserID}}",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{pathURL}}",
+						"users",
+						"{{newuserID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5-get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `",
+							"<style type=\"text/css\">",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+							"    .tftable tr {background-color:#ffffff;}",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+							"    .tftable tr:hover {background-color:#e0ffff;}",
+							"</style>",
+							"",
+							"<table class=\"tftable\" border=\"1\">",
+							"    <tr>",
+							"        <th>ID</th>",
+							"        <th>Name</th>",
+							"        <th>Email</th>",
+							"        <th>Gender</th>",
+							"        <th>Status</th>",
+							"    </tr>",
+							"    {{#each response}}",
+							"    <tr>",
+							"        <td>{{id}}</td>",
+							"        <td>{{name}}</td>",
+							"        <td>{{email}}</td>",
+							"        <td>{{gender}}</td>",
+							"        <td>{{status}}</td>",
+							"    </tr>",
+							"    {{/each}}",
+							"</table>",
+							"`;",
+							"",
+							"function constructVisualizerPayload() {",
+							"    var res = pm.response.json();",
+							"    return { response: res };",
+							"}",
+							"",
+							"pm.visualizer.set(template, constructVisualizerPayload());",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{tokenID}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"madhu.muse@gmail.com\",\n    \"password\": \"Rudra@156\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/{{pathURL}}/users",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"{{pathURL}}",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://gorest.co.in",
+			"type": "string"
+		},
+		{
+			"key": "pathURL",
+			"value": "public/v2",
+			"type": "string"
+		},
+		{
+			"key": "tokenID",
+			"value": "Bearer 5bae82255d8dd3e8bb494800c89517bf992e712eb996533c5e5eebea98d2caf2",
+			"type": "string"
+		},
+		{
+			"key": "newuserID",
+			"value": ""
+		}
+	]
+}
